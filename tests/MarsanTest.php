@@ -17,6 +17,11 @@ class MarsanTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("<h1>Hello World</h1>", $this->marsan->sanitizeHtml("<h1>Hello World</h1>"));
     }
 
+    public function testLinkWhitelist()
+    {
+        $this->assertEquals("<a href=\"http://google.com/\">Google</a>", $this->marsan->sanitizeHtml("<a href=\"http://google.com/\">Google</a>"));
+    }
+
     public function testSanitizeBadHtml()
     {
         $this->assertEquals("alert('Hello World');", $this->marsan->sanitizeHtml("<script>alert('Hello World');</script>"));
